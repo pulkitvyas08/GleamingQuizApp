@@ -1,7 +1,10 @@
+import lustre/element/html
 import lustre
 import lustre/effect
-import quiz_item
+import lustre/element
 import gleam/option.{type Option, None}
+
+import quiz_item
 
 pub fn main() {
   let app = lustre.application(init, update, view)
@@ -33,4 +36,10 @@ fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
   case msg{
     UserSelectedOption(_option) -> #(model, effect.none())
   }
+}
+
+fn view(_model: Model) -> element.Element(msg) {
+  html.div([], [
+    html.text("Hello Quiz")
+  ])
 }
