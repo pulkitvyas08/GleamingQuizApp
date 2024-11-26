@@ -1,9 +1,7 @@
 import dot_env/env
-import gleam/dynamic
-// import gleam/erlang/os
 import gleam/list
 import gleam/option.{Some}
-import gleam/pgo.{type Connection}
+import pog.{type Connection}
 
 pub fn connect() -> Connection {
   let assert Ok(host) = env.get_string("DB_HOST")
@@ -11,9 +9,9 @@ pub fn connect() -> Connection {
   let assert Ok(pass) = env.get_string("DB_PASS")
   let assert Ok(db_name) = env.get_string("DB_NAME")
 
-  pgo.connect(
-    pgo.Config(
-      ..pgo.default_config(),
+  pog.connect(
+    pog.Config(
+      ..pog.default_config(),
       host: host,
       database: db_name,
       user: user,
@@ -23,7 +21,7 @@ pub fn connect() -> Connection {
   )
 }
 
-pub fn migrate(db: Connection) -> Result(Nil, pgo.QueryError) {
+pub fn migrate(db: Connection) -> Result(Nil, pog.QueryError) {
   let migrations = [
   "CREATE TABLE IF NOT EXISTS quizzes (
     id SERIAL PRIMARY KEY,
@@ -38,6 +36,7 @@ pub fn migrate(db: Connection) -> Result(Nil, pgo.QueryError) {
 
   migrations
   |> list.try_each(fn(migration) {
-    pgo.execute(migration, db, [], dynamic.dynamic)
+    pog.query(migration)
+    |> pog.execute(db)
   })
 }
