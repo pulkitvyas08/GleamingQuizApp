@@ -37,6 +37,7 @@ packages = [
   { name = "platform", version = "1.0.0", build_tools = ["gleam"], requirements = [], otp_app = "platform", source = "hex", outer_checksum = "8339420A95AD89AAC0F82F4C3DB8DD401041742D6C3F46132A8739F6AEB75391" },
   { name = "pog", version = "1.0.0", build_tools = ["gleam"], requirements = ["gleam_stdlib", "pgo"], otp_app = "pog", source = "hex", outer_checksum = "00D57120936AFBF486BE357C472E483C1F0CA507FF9C3668075E87C733CA53F8" },
   { name = "ranger", version = "1.3.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], otp_app = "ranger", source = "hex", outer_checksum = "B8F3AFF23A3A5B5D9526B8D18E7C43A7DFD3902B151B97EC65397FE29192B695" },
+  { name = "shared", version = "1.0.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], source = "local", path = "../shared" },
   { name = "simplifile", version = "2.2.0", build_tools = ["gleam"], requirements = ["filepath", "gleam_stdlib"], otp_app = "simplifile", source = "hex", outer_checksum = "0DFABEF7DC7A9E2FF4BB27B108034E60C81BEBFCB7AB816B9E7E18ED4503ACD8" },
   { name = "squirrel", version = "2.0.0", build_tools = ["gleam"], requirements = ["argv", "decode", "envoy", "eval", "filepath", "glam", "gleam_community_ansi", "gleam_crypto", "gleam_json", "gleam_stdlib", "justin", "mug", "non_empty_list", "pog", "simplifile", "term_size", "tom", "tote", "youid"], otp_app = "squirrel", source = "hex", outer_checksum = "4296D42B156F3D0A3CE076726E66D5940A8C47520B6E92AD908143C1DBC7C4C3" },
   { name = "telemetry", version = "1.3.0", build_tools = ["rebar3"], requirements = [], otp_app = "telemetry", source = "hex", outer_checksum = "7015FC8919DBE63764F4B4B87A95B7C0996BD539E0D499BE6EC9D7F3875B79E6" },
@@ -51,9 +52,11 @@ packages = [
 dot_env = { version = ">= 1.2.0 and < 2.0.0" }
 gleam_erlang = { version = ">= 0.30.0 and < 1.0.0" }
 gleam_http = { version = ">= 3.7.1 and < 4.0.0" }
+gleam_json = { version = ">= 2.1.0 and < 3.0.0" }
 gleam_stdlib = { version = ">= 0.34.0 and < 2.0.0" }
 gleeunit = { version = ">= 1.0.0 and < 2.0.0" }
 mist = { version = ">= 3.0.0 and < 4.0.0" }
 pog = { version = ">= 1.0.0 and < 2.0.0" }
+shared = { path = "../shared" }
 squirrel = { version = ">= 2.0.0 and < 3.0.0" }
 wisp = { version = ">= 1.2.0 and < 2.0.0" }

@@ -16,7 +16,8 @@ pub fn connect() -> Connection {
       database: db_name,
       user: user,
       password: Some(pass),
-      port: 5432
+      port: 5432,
+      // rows_as_map: True
     ),
   )
 }

@@ -25,3 +25,9 @@ Then export your env variables like this:
    ```bash
      source .env.local
    ```
+
+To share types between FE and BE add a `shared` gleam project and add it as a dependency in the server and client projects in `gleam.toml` as:
+
+```toml
+  shared = { path = "../shared" }
+```
