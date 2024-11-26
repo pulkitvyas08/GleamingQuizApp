@@ -1,5 +1,8 @@
-import gleam/io
+import database
+import gleam/erlang.{priv_directory}
 
 pub fn main() {
-  io.println("Hello from server!")
+  let assert Ok(priv) = priv_directory("server")
+  let db = database.connect()
+  let assert Ok(Nil) = database.migrate(db)
 }
