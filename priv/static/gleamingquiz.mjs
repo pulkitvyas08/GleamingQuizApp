@@ -182,6 +182,12 @@ function makeError(variant, module, line, fn, message, extra) {
 }
 
 // build/dev/javascript/gleam_stdlib/gleam/option.mjs
+var Some = class extends CustomType {
+  constructor(x0) {
+    super();
+    this[0] = x0;
+  }
+};
 var None = class extends CustomType {
 };
 
@@ -1925,6 +1931,19 @@ function start2(app, selector, flags) {
   );
 }
 
+// build/dev/javascript/gleamingquiz/quiz_item.mjs
+var QuizItem = class extends CustomType {
+  constructor(id, question, option1, option2, option3, option4) {
+    super();
+    this.id = id;
+    this.question = question;
+    this.option1 = option1;
+    this.option2 = option2;
+    this.option3 = option3;
+    this.option4 = option4;
+  }
+};
+
 // build/dev/javascript/lustre/lustre/element/html.mjs
 function text2(content) {
   return text(content);
@@ -1952,7 +1971,7 @@ function quiz_content(quiz) {
   } else {
     let quiz$1 = quiz[0];
     return div(
-      toList([class$("flex flex-col justify-center content-center")]),
+      toList([]),
       toList([
         h2(toList([]), toList([text2(quiz$1.question)])),
         div(
@@ -1970,17 +1989,37 @@ function quiz_content(quiz) {
 }
 function layout(quiz) {
   return div(
-    toList([class$("bg-red-50 flex flex-col")]),
+    toList([class$("bg-red-50 flex flex-col gap-y-8 min-h-screen p-2 px-4")]),
     toList([
       header(
-        toList([class$("flex flex-row justify-between")]),
+        toList([class$("flex flex-row justify-between content-center")]),
         toList([
-          button(toList([]), toList([text2("Reset")])),
-          h1(toList([]), toList([text2("Quiz App")])),
-          button(toList([]), toList([text2("Score:")]))
+          button(
+            toList([
+              class$(
+                "hover:bg-stone-700 bg-stone-800 rounded-full px-4 py-2 text-white"
+              )
+            ]),
+            toList([text2("Reset")])
+          ),
+          h1(
+            toList([class$("text-3xl font-bold")]),
+            toList([text2("Gleaming Quiz App")])
+          ),
+          div(
+            toList([class$("border-2 rounded-xl px-4 py-1 border-stone-800")]),
+            toList([text2("Score:")])
+          )
         ])
       ),
-      quiz_content(quiz)
+      div(
+        toList([
+          class$(
+            "flex-1 flex flex-col justify-center content-center text-center min-h-full"
+          )
+        ]),
+        toList([quiz_content(quiz)])
+      )
     ])
   );
 }
@@ -1993,7 +2032,15 @@ var Model2 = class extends CustomType {
   }
 };
 function init2(_) {
-  return [new Model2(new None()), none()];
+  let initial_quiz_item = new QuizItem(
+    1,
+    "What is the capital of France?",
+    "London",
+    "Paris",
+    "New Delhi",
+    "Moscow"
+  );
+  return [new Model2(new Some(initial_quiz_item)), none()];
 }
 function update(model, msg) {
   {
