@@ -182,12 +182,6 @@ function makeError(variant, module, line, fn, message, extra) {
 }
 
 // build/dev/javascript/gleam_stdlib/gleam/option.mjs
-var Some = class extends CustomType {
-  constructor(x0) {
-    super();
-    this[0] = x0;
-  }
-};
 var None = class extends CustomType {
 };
 
@@ -1931,19 +1925,6 @@ function start2(app, selector, flags) {
   );
 }
 
-// build/dev/javascript/gleamingquiz/quiz_item.mjs
-var QuizItem = class extends CustomType {
-  constructor(id, question, option1, option2, option3, option4) {
-    super();
-    this.id = id;
-    this.question = question;
-    this.option1 = option1;
-    this.option2 = option2;
-    this.option3 = option3;
-    this.option4 = option4;
-  }
-};
-
 // build/dev/javascript/lustre/lustre/element/html.mjs
 function text2(content) {
   return text(content);
@@ -1971,16 +1952,47 @@ function quiz_content(quiz) {
   } else {
     let quiz$1 = quiz[0];
     return div(
-      toList([]),
+      toList([class$("flex flex-col gap-y-8 max-w-fit self-center")]),
       toList([
-        h2(toList([]), toList([text2(quiz$1.question)])),
+        h2(
+          toList([class$("text-xl font-semibold")]),
+          toList([text2(quiz$1.question)])
+        ),
         div(
-          toList([]),
+          toList([class$("grid grid-cols-2 gap-4")]),
           toList([
-            text2(quiz$1.option1),
-            text2(quiz$1.option2),
-            text2(quiz$1.option3),
-            text2(quiz$1.option4)
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option1)])
+            ),
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option2)])
+            ),
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option3)])
+            ),
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option4)])
+            )
           ])
         )
       ])
@@ -2032,15 +2044,7 @@ var Model2 = class extends CustomType {
   }
 };
 function init2(_) {
-  let initial_quiz_item = new QuizItem(
-    1,
-    "What is the capital of France?",
-    "London",
-    "Paris",
-    "New Delhi",
-    "Moscow"
-  );
-  return [new Model2(new Some(initial_quiz_item)), none()];
+  return [new Model2(new None()), none()];
 }
 function update(model, msg) {
   {

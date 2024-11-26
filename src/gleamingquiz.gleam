@@ -2,7 +2,7 @@ import templates/layout
 import lustre
 import lustre/effect
 import lustre/element
-import gleam/option.{type Option, None, Some}
+import gleam/option.{type Option, None}
 
 import quiz_item
 
@@ -24,19 +24,9 @@ type Model {
 }
 
 fn init(_flags) -> #(Model, effect.Effect(Msg)) {
-   let initial_quiz_item = quiz_item.QuizItem(
-    id: 1,
-    question: "What is the capital of France?",
-    option1: "London",
-    option2: "Paris",
-    option3: "New Delhi",
-    option4: "Moscow"
-  )
-
   #(
     Model(
-      // current_quiz_item: None
-      current_quiz_item: Some(initial_quiz_item)
+      current_quiz_item: None
     ),
     effect.none()
   )
