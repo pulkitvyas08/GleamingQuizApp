@@ -12,7 +12,7 @@ pub fn handle_request(
   use <- wisp.serve_static(req, "/static", asset_dir)
 
   let assert Ok(resp) = pgo.execute("select * from quizzes", db, [], dynamic.dynamic)
-  io.debug(#("got something back", resp))
+  io.debug(resp)
 
   case request.path_segments(req) {
     _ -> 
