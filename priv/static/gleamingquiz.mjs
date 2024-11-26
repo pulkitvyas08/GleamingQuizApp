@@ -883,6 +883,9 @@ var Dict = class _Dict {
 };
 
 // build/dev/javascript/gleam_stdlib/gleam_stdlib.mjs
+function identity(x) {
+  return x;
+}
 function to_string(term) {
   return term.toString();
 }
@@ -1189,6 +1192,14 @@ function do_handlers(loop$element, loop$handlers, loop$key) {
 }
 function handlers(element2) {
   return do_handlers(element2, new$(), "0");
+}
+
+// build/dev/javascript/lustre/lustre/attribute.mjs
+function attribute(name, value) {
+  return new Attribute(name, identity(value), false);
+}
+function class$(name) {
+  return attribute("class", name);
 }
 
 // build/dev/javascript/lustre/lustre/element.mjs
@@ -1918,8 +1929,60 @@ function start2(app, selector, flags) {
 function text2(content) {
   return text(content);
 }
+function header(attrs, children2) {
+  return element("header", attrs, children2);
+}
+function h1(attrs, children2) {
+  return element("h1", attrs, children2);
+}
+function h2(attrs, children2) {
+  return element("h2", attrs, children2);
+}
 function div(attrs, children2) {
   return element("div", attrs, children2);
+}
+function button(attrs, children2) {
+  return element("button", attrs, children2);
+}
+
+// build/dev/javascript/gleamingquiz/templates/layout.mjs
+function quiz_content(quiz) {
+  if (quiz instanceof None) {
+    return text2("Loading Quiz...");
+  } else {
+    let quiz$1 = quiz[0];
+    return div(
+      toList([class$("flex flex-col justify-center content-center")]),
+      toList([
+        h2(toList([]), toList([text2(quiz$1.question)])),
+        div(
+          toList([]),
+          toList([
+            text2(quiz$1.option1),
+            text2(quiz$1.option2),
+            text2(quiz$1.option3),
+            text2(quiz$1.option4)
+          ])
+        )
+      ])
+    );
+  }
+}
+function layout(quiz) {
+  return div(
+    toList([class$("bg-red-50 flex flex-col")]),
+    toList([
+      header(
+        toList([class$("flex flex-row justify-between")]),
+        toList([
+          button(toList([]), toList([text2("Reset")])),
+          h1(toList([]), toList([text2("Quiz App")])),
+          button(toList([]), toList([text2("Score:")]))
+        ])
+      ),
+      quiz_content(quiz)
+    ])
+  );
 }
 
 // build/dev/javascript/gleamingquiz/gleamingquiz.mjs
@@ -1937,8 +2000,8 @@ function update(model, msg) {
     return [model, none()];
   }
 }
-function view(_) {
-  return div(toList([]), toList([text2("Hello Quiz")]));
+function view(model) {
+  return layout(model.current_quiz_item);
 }
 function main() {
   let app = application(init2, update, view);
