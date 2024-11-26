@@ -7,7 +7,7 @@ import lustre/attribute.{ class }
 pub fn quiz_content(quiz: option.Option(quiz_item.QuizItem)) -> element.Element(a) {
   case quiz {
     option.None -> html.text("Loading Quiz...")
-    option.Some(quiz) -> html.div([class("flex flex-col justify-center content-center")], [
+    option.Some(quiz) -> html.div([], [
       html.h2([], [html.text(quiz.question)]),
       html.div([], [
         html.text(quiz.option1),
@@ -20,12 +20,12 @@ pub fn quiz_content(quiz: option.Option(quiz_item.QuizItem)) -> element.Element(
 }
 
 pub fn layout(quiz: option.Option(quiz_item.QuizItem)) -> element.Element(a) {
-  html.div([class("bg-red-50 flex flex-col")], [
+  html.div([class("bg-red-50 flex flex-col gap-y-8 min-h-screen p-2 px-4")], [
     html.header([class("flex flex-row justify-between")], [
       html.button([], [html.text("Reset")]),
-      html.h1([], [html.text("Quiz App")]),
+      html.h1([class("text-xl font-bold")], [html.text("Gleaming Quiz App")]),
       html.button([], [html.text("Score:")])
     ]),
-    quiz_content(quiz)
+    html.div([class("flex-1 flex flex-col justify-center content-center text-center min-h-full")], [quiz_content(quiz)]),
   ])
 }

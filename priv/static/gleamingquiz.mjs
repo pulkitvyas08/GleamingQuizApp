@@ -1952,7 +1952,7 @@ function quiz_content(quiz) {
   } else {
     let quiz$1 = quiz[0];
     return div(
-      toList([class$("flex flex-col justify-center content-center")]),
+      toList([]),
       toList([
         h2(toList([]), toList([text2(quiz$1.question)])),
         div(
@@ -1970,17 +1970,27 @@ function quiz_content(quiz) {
 }
 function layout(quiz) {
   return div(
-    toList([class$("bg-red-50 flex flex-col")]),
+    toList([class$("bg-red-50 flex flex-col gap-y-8 min-h-screen p-2 px-4")]),
     toList([
       header(
         toList([class$("flex flex-row justify-between")]),
         toList([
           button(toList([]), toList([text2("Reset")])),
-          h1(toList([]), toList([text2("Quiz App")])),
+          h1(
+            toList([class$("text-xl font-bold")]),
+            toList([text2("Gleaming Quiz App")])
+          ),
           button(toList([]), toList([text2("Score:")]))
         ])
       ),
-      quiz_content(quiz)
+      div(
+        toList([
+          class$(
+            "flex-1 flex flex-col justify-center content-center text-center min-h-full"
+          )
+        ]),
+        toList([quiz_content(quiz)])
+      )
     ])
   );
 }
