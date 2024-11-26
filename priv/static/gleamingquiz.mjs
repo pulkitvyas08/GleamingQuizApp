@@ -1922,7 +1922,7 @@ function div(attrs, children2) {
   return element("div", attrs, children2);
 }
 
-// build/dev/javascript/quizapp/quizapp.mjs
+// build/dev/javascript/gleamingquiz/gleamingquiz.mjs
 var Model2 = class extends CustomType {
   constructor(current_quiz_item) {
     super();
@@ -1946,7 +1946,7 @@ function main() {
   if (!$.isOk()) {
     throw makeError(
       "let_assert",
-      "quizapp",
+      "gleamingquiz",
       11,
       "main",
       "Pattern match failed, no pattern matched the value.",
