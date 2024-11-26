@@ -1971,16 +1971,47 @@ function quiz_content(quiz) {
   } else {
     let quiz$1 = quiz[0];
     return div(
-      toList([]),
+      toList([class$("flex flex-col gap-y-8 max-w-fit self-center")]),
       toList([
-        h2(toList([]), toList([text2(quiz$1.question)])),
+        h2(
+          toList([class$("text-xl font-semibold")]),
+          toList([text2(quiz$1.question)])
+        ),
         div(
-          toList([]),
+          toList([class$("grid grid-cols-2 gap-4")]),
           toList([
-            text2(quiz$1.option1),
-            text2(quiz$1.option2),
-            text2(quiz$1.option3),
-            text2(quiz$1.option4)
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option1)])
+            ),
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option2)])
+            ),
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option3)])
+            ),
+            button(
+              toList([
+                class$(
+                  "hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4"
+                )
+              ]),
+              toList([text2(quiz$1.option4)])
+            )
           ])
         )
       ])

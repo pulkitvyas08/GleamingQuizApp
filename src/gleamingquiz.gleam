@@ -2,7 +2,7 @@ import templates/layout
 import lustre
 import lustre/effect
 import lustre/element
-import gleam/option.{type Option, None, Some}
+import gleam/option.{type Option, Some}
 
 import quiz_item
 

@@ -7,13 +7,13 @@ import lustre/attribute.{ class }
 pub fn quiz_content(quiz: option.Option(quiz_item.QuizItem)) -> element.Element(a) {
   case quiz {
     option.None -> html.text("Loading Quiz...")
-    option.Some(quiz) -> html.div([], [
-      html.h2([], [html.text(quiz.question)]),
-      html.div([], [
-        html.text(quiz.option1),
-        html.text(quiz.option2),
-        html.text(quiz.option3),
-        html.text(quiz.option4),
+    option.Some(quiz) -> html.div([class("flex flex-col gap-y-8 max-w-fit self-center")], [
+      html.h2([class("text-xl font-semibold")], [html.text(quiz.question)]),
+      html.div([class("grid grid-cols-2 gap-4")], [
+        html.button([class("hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4")], [html.text(quiz.option1)]),
+        html.button([class("hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4")], [html.text(quiz.option2)]),
+        html.button([class("hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4")], [html.text(quiz.option3)]),
+        html.button([class("hover:bg-red-200 border-2 border-stone-700 rounded-xl p-4")], [html.text(quiz.option4)]),
       ])
     ])
   }
