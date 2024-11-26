@@ -1,4 +1,4 @@
-import lustre/element/html
+import templates/layout
 import lustre
 import lustre/effect
 import lustre/element
@@ -38,8 +38,6 @@ fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
   }
 }
 
-fn view(_model: Model) -> element.Element(msg) {
-  html.div([], [
-    html.text("Hello Quiz")
-  ])
+fn view(model: Model) -> element.Element(msg) {
+  layout.layout(model.current_quiz_item)
 }
